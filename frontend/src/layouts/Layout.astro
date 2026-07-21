@@ -1,23 +1,35 @@
-<!doctype html>
-<html lang="en">
+---
+import '../styles/global.css';
+const { title } = Astro.props;
+---
+
+<html lang="pt-BR">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} | Samavi Móveis e Decoração</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-samavi-bg text-samavi-dark font-sans antialiased flex flex-col min-h-screen">
+		
+		<header class="bg-white shadow-sm py-4">
+			<div class="container mx-auto px-4 flex justify-center md:justify-between items-center">
+				<a href="/" class="text-2xl font-bold text-samavi-red">Samavi</a>
+				<nav class="hidden md:flex gap-6 font-medium">
+					<a href="/" class="hover:text-samavi-red transition-colors">Início</a>
+					<a href="/historico" class="hover:text-samavi-red transition-colors">Eventos</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="grow">
+			<slot />
+		</main>
+
+		<footer class="bg-samavi-dark text-white py-6 mt-12 text-center text-sm">
+			<p>&copy; {new Date().getFullYear()} Samavi Comercial. Todos os direitos reservados.</p>
+		</footer>
+
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

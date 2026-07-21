@@ -1,11 +1,34 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Início">
+	<section class="text-center py-12 px-4">
+		<h1 class="text-3xl md:text-4xl font-bold text-samavi-red mb-2">Samavi Móveis e Decoração</h1>
+		<p class="text-gray-600 font-medium">ARAÇUAÍ MG</p>
+	</section>
+
+	<section class="max-w-md mx-auto px-4 flex flex-col gap-4">
+		<a href="#" class="bg-samavi-red text-white py-4 px-6 rounded-full text-center font-medium shadow-md hover:bg-red-900 transition-colors flex items-center justify-center gap-3">
+			<span>Atendimento WhatsApp</span>
+		</a>
+		
+		<a href="#" class="bg-samavi-red text-white py-4 px-6 rounded-full text-center font-medium shadow-md hover:bg-red-900 transition-colors flex items-center justify-center gap-3">
+			<span>Instagram</span>
+		</a>
+
+		<a href="#" class="bg-samavi-red text-white py-4 px-6 rounded-full text-center font-medium shadow-md hover:bg-red-900 transition-colors flex items-center justify-center gap-3">
+			<span>Avalie nos ⭐⭐⭐⭐⭐</span>
+		</a>
+
+		<a href="#" class="bg-samavi-red text-white py-4 px-6 rounded-full text-center font-medium shadow-md hover:bg-red-900 transition-colors flex items-center justify-center gap-3">
+			<span>Nossa Localização</span>
+		</a>
+	</section>
+
+	<section class="text-center mt-12 text-sm text-gray-700">
+		<h2 class="font-bold mb-2">Horário de Funcionamento</h2>
+		<p>Seg a Sexta - 8hrs às 18hrs</p>
+		<p>Sábado - 8hrs às 13hrs</p>
+	</section>
 </Layout>
