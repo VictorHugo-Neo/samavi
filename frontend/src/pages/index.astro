@@ -1,59 +1,14 @@
 ---
-// src/pages/index.astro
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import FeaturedProducts from '../components/FeaturedProducts.astro';
+import Engagement from '../components/Engagement.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Início - Móveis e Decoração em Araçuaí">
-	
 	<Hero />
 	<About />
 	<FeaturedProducts />
-
-	<section class="bg-gray-100 py-16 border-t border-gray-200">
-		<div class="container mx-auto px-4 max-w-4xl text-center">
-			<h2 class="text-3xl font-bold text-samavi-dark mb-4">Fique por dentro das nossas Lives e Promoções</h2>
-			<p class="text-gray-600 mb-8">Acompanhe nossos eventos especiais, dicas de decoração temática (Natal, São João) e ofertas exclusivas transmitidas ao vivo para nossos clientes.</p>
-			
-			<div class="bg-white p-8 rounded-2xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
-				<div class="text-left">
-					<span class="bg-red-100 text-samavi-red text-xs font-bold px-3 py-1 rounded-full uppercase">Próximo Evento</span>
-					<h3 class="text-xl font-bold mt-2 text-gray-900">Live Especial de Ofertas da Semana</h3>
-					<p class="text-gray-600 text-sm mt-1">Acompanhe pelo nosso Instagram oficial e garanta condições imperdíveis.</p>
-				</div>
-				<a href="https://instagram.com/samavicomercial" target="_blank" rel="noopener noreferrer" class="bg-samavi-red hover:bg-red-800 text-white font-bold px-6 py-3 rounded-lg shadow transition-colors whitespace-nowrap">
-					Seguir no Instagram
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<footer class="bg-samavi-dark text-white pt-16 pb-8">
-		<div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-			<div>
-				<h3 class="text-2xl font-bold text-red-400 mb-4">Samavi Comercial</h3>
-				<p class="text-gray-400 text-sm leading-relaxed">
-					Sua loja de referência em móveis e decoração em Araçuaí-MG. Qualidade, bom gosto e confiança em cada detalhe.
-				</p>
-			</div>
-			<div>
-				<h4 class="font-bold text-lg mb-4 text-gray-200">Horário de Funcionamento</h4>
-				<p class="text-gray-400 text-sm mb-2">Segunda a Sexta: 08:00 às 18:00</p>
-				<p class="text-gray-400 text-sm">Sábado: 08:00 às 13:00</p>
-			</div>
-			<div>
-				<h4 class="font-bold text-lg mb-4 text-gray-200">Contato & Localização</h4>
-				<p class="text-gray-400 text-sm mb-2">Rua Dom Serafim, 16 - Centro</p>
-				<p class="text-gray-400 text-sm mb-2">Araçuaí - MG</p>
-				<p class="text-gray-400 text-sm mb-2">Tel / WhatsApp: (33) 98877-4411</p>
-				<p class="text-gray-400 text-sm">E-mail: samavicom@gmail.com</p>
-			</div>
-		</div>
-		<div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
-			<p>&copy; {new Date().getFullYear()} Samavi Comercial. Todos os direitos reservados.</p>
-		</div>
-	</footer>
-
+	<Engagement />
 </Layout>
