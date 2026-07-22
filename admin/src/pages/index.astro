@@ -3,6 +3,13 @@
 import AdminLayout from '../layouts/AdminLayout.astro';
 import BrandHeader from '../components/BrandHeader.astro';
 import LoginForm from '../components/LoginForm.astro';
+import { pool } from '../lib/db.js';
+try {
+    const resposta = await pool.query('SELECT NOW()');
+    console.log('Horário retornado pelo PostgreSQL:', resposta.rows[0].now);
+} catch (erro) {
+    console.error('Erro no teste de conexão:', erro);
+}
 ---
 
 <AdminLayout title="Login">
