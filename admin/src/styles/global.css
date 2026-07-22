@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --color-samavi-red: #8A151B;
+  --color-samavi-dark: #1F2937;
+  --color-samavi-bg: #F9FAFB;
+}
