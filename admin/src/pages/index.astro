@@ -1,20 +1,44 @@
 ---
-// src/pages/index.astro
 import AdminLayout from '../layouts/AdminLayout.astro';
 import BrandHeader from '../components/BrandHeader.astro';
 import LoginForm from '../components/LoginForm.astro';
 import { pool } from '../lib/db.js';
-try {
-    const resposta = await pool.query('SELECT NOW()');
-    console.log('Horário retornado pelo PostgreSQL:', resposta.rows[0].now);
-} catch (erro) {
-    console.error('Erro no teste de conexão:', erro);
+
+let erroLogin = "";
+if (Astro.request.method === "POST") {
+    try {
+        const dadosFormulario = await Astro.request.formData();
+        const email = dadosFormulario.get("email");
+        const senha = dadosFormulario.get("password");
+
+        if (!email || !senha) {
+            erroLogin = "Por favor, preencha o e-mail e a senha.";
+        } else {
+            const consulta = await pool.query('SELECT * FROM admin_user.usuarios WHERE email = $1', [email]);
+            const usuario = consulta.rows[0];
+
+            if (usuario && usuario.senha === senha) {
+                return Astro.redirect('/dashboard');
+            } else {
+                erroLogin = "E-mail ou senha incorretos. Tente novamente.";
+            }
+        }
+    } catch (erro) {
+        console.error("Erro ao validar login:", erro);
+        erroLogin = "Ocorreu um erro no servidor.";
+    }
 }
 ---
-
 <AdminLayout title="Login">
     <main class="w-full max-w-md mx-auto p-6">
         <BrandHeader />
-		<LoginForm />
+        
+        {erroLogin && (
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm font-medium text-center">
+                {erroLogin}
+            </div>
+        )}
+
+        <LoginForm />
     </main>
 </AdminLayout>
