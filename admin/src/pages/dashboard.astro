@@ -1,16 +1,45 @@
 ---
 import AdminLayout from '../layouts/AdminLayout.astro';
+import FormularioProduto from '../components/FormProduct.astro';
+import { pool } from '../lib/db.js';
+
+let mensagemSistema = "";
+
+if (Astro.request.method === "POST") {
+    try {
+        const dados = await Astro.request.formData();
+        const nome = dados.get("nome");
+        const descricao = dados.get("descricao");
+        const mensagem_whatsapp = dados.get("mensagem_whatsapp");
+        
+        await pool.query(
+            'INSERT INTO admin_user.produtos (nome, descricao, mensagem_whatsapp) VALUES ($1, $2, $3)',
+            [nome, descricao, mensagem_whatsapp]
+        );
+        
+        mensagemSistema = "Produto cadastrado com sucesso.";
+    } catch (erro) {
+        console.error(erro);
+        mensagemSistema = "Erro ao salvar o produto no banco de dados.";
+    }
+}
 ---
 
 <AdminLayout title="Painel de Controle">
-    <div class="min-h-screen bg-gray-100 p-8">
-        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm p-6">
-            <h1 class="text-3xl font-bold text-gray-800">Bem-vindo ao Painel Samavi! 🎉</h1>
-            <p class="text-gray-600 mt-2">Você fez login com sucesso. Em breve, a gestão de produtos ficará aqui.</p>
-            
-            <div class="mt-8">
-                <a href="/" class="text-red-600 hover:underline font-semibold">Sair (Logout)</a>
+    <div class="min-h-screen bg-gray-50 p-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Gestão de Produtos</h1>
+                <a href="/" class="text-red-600 font-semibold hover:underline">Sair do Sistema</a>
             </div>
+            
+            {mensagemSistema && (
+                <div class="bg-blue-100 border border-blue-300 text-blue-800 p-4 mb-6 rounded-lg font-medium">
+                    {mensagemSistema}
+                </div>
+            )}
+
+            <FormularioProduto />
         </div>
     </div>
 </AdminLayout>
