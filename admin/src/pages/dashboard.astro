@@ -2,6 +2,8 @@
 import AdminLayout from '../layouts/AdminLayout.astro';
 import FormularioProduto from '../components/FormProduct.astro';
 import { pool } from '../lib/db.js';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 let mensagemSistema = "";
 
@@ -11,10 +13,21 @@ if (Astro.request.method === "POST") {
         const nome = dados.get("nome");
         const descricao = dados.get("descricao");
         const mensagem_whatsapp = dados.get("mensagem_whatsapp");
-        
+        const arquivoFoto = dados.get("foto");
+
+        let nomeFotoFinal = null;
+        if (arquivoFoto && typeof arquivoFoto === 'object' && arquivoFoto.name && arquivoFoto.size > 0) {            nomeFotoFinal = `${Date.now()}-${arquivoFoto.name.replace(/\s+/g, '-')}`;
+            
+            const diretorioUploads = path.join(process.cwd(), 'public', 'uploads');
+            await fs.mkdir(diretorioUploads, { recursive: true });
+            
+            const caminhoArquivo = path.join(diretorioUploads, nomeFotoFinal);
+            const buffer = Buffer.from(await arquivoFoto.arrayBuffer());
+            await fs.writeFile(caminhoArquivo, buffer);
+        }
         await pool.query(
-            'INSERT INTO admin_user.produtos (nome, descricao, mensagem_whatsapp) VALUES ($1, $2, $3)',
-            [nome, descricao, mensagem_whatsapp]
+            'INSERT INTO admin_user.produtos (nome, descricao, mensagem_whatsapp, foto) VALUES ($1, $2, $3, $4)',
+            [nome, descricao, mensagem_whatsapp, nomeFotoFinal]
         );
         
         mensagemSistema = "Produto cadastrado com sucesso.";
