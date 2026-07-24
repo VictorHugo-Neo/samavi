@@ -1,0 +1,86 @@
+<form
+    method="POST"
+    enctype="multipart/form-data"
+    class="bg-white p-6 rounded-lg shadow-md border border-gray-100 mt-6"
+>
+    <input type="hidden" name="acao" value="criar" />
+    <h2 class="text-xl font-bold mb-4 text-gray-800">
+        Cadastrar Nova Live / Evento
+    </h2>
+
+    <div class="mb-4">
+        <label for="titulo" class="block text-sm font-bold text-gray-700 mb-2"
+            >Título do Evento</label
+        >
+        <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            required
+            class="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-red-500"
+            placeholder="Ex: Live de São João"
+        />
+    </div>
+
+    <div class="mb-4">
+        <label
+            for="data_evento"
+            class="block text-sm font-bold text-gray-700 mb-2"
+            >Data do Evento</label
+        >
+        <input
+            type="date"
+            id="data_evento"
+            name="data_evento"
+            required
+            class="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-red-500"
+        />
+    </div>
+
+    <div class="mb-4">
+        <label
+            for="descricao"
+            class="block text-sm font-bold text-gray-700 mb-2">Descrição</label
+        >
+        <textarea
+            id="descricao"
+            name="descricao"
+            class="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-red-500"
+            placeholder="Detalhes do evento..."></textarea>
+    </div>
+
+    <div class="mb-4">
+        <label
+            for="link_video"
+            class="block text-sm font-bold text-gray-700 mb-2"
+            >Link do Vídeo (Opcional)</label
+        >
+        <input
+            type="url"
+            id="link_video"
+            name="link_video"
+            class="w-full border border-gray-300 p-3 rounded-lg outline-none focus:border-red-500"
+            placeholder="https://instagram.com/..."
+        />
+    </div>
+
+    <div class="mb-6">
+        <label for="foto" class="block text-sm font-bold text-gray-700 mb-2"
+            >Foto de Capa</label
+        >
+        <input
+            type="file"
+            id="foto"
+            name="foto"
+            accept="image/*"
+            class="w-full border border-gray-300 p-2 rounded-lg outline-none focus:border-red-500"
+        />
+    </div>
+
+    <button
+        type="submit"
+        class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg w-full transition-colors"
+    >
+        Salvar Evento
+    </button>
+</form>

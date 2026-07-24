@@ -1,0 +1,56 @@
+---
+import { pool } from '../../lib/db.js';
+
+let lives = [];
+try {
+    // Busca ordenando pela data do evento (do mais recente para o mais antigo)
+    const consulta = await pool.query('SELECT * FROM admin_user.lives ORDER BY data_evento DESC');
+    lives = consulta.rows;
+} catch (erro) {
+    console.error("Erro ao buscar lives:", erro);
+}
+
+// Função para formatar a data para o padrão brasileiro
+const formatarData = (dataSQL: any) => {
+    if (!dataSQL) return '';
+    const data = new Date(dataSQL);
+    return data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+};
+---
+<div>
+    <h2 class="text-xl font-bold mb-4 text-gray-800 mt-6 lg:mt-0">Eventos Cadastrados</h2>
+    
+    <div class="bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden">
+        {lives.length === 0 ? (
+            <p class="p-6 text-gray-500 text-center">Nenhum evento cadastrado ainda.</p>
+        ) : (
+            <ul class="divide-y divide-gray-100 max-h-96 overflow-y-auto">
+                {lives.map((live: any) => (
+                    <li class="p-4 hover:bg-gray-50 flex items-center gap-4 transition-colors">
+                        
+                        {live.foto ? (
+                            <img src={`/uploads/${live.foto}`} alt={live.titulo} class="w-16 h-16 object-cover rounded-md border border-gray-200" />
+                        ) : (
+                            <div class="w-16 h-16 bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center text-gray-400 text-xs text-center">Sem foto</div>
+                        )}
+                        
+                        <div class="flex-1">
+                            <h3 class="font-bold text-gray-800">{live.titulo}</h3>
+                            <p class="text-sm text-red-600 font-semibold">{formatarData(live.data_evento)}</p>
+                            <p class="text-sm text-gray-500 line-clamp-1">{live.descricao}</p>
+                        </div>
+
+                        <form method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este evento?');">
+                            <input type="hidden" name="acao" value="deletar" />
+                            <input type="hidden" name="live_id" value={live.id} />
+                            <input type="hidden" name="foto_nome" value={live.foto || ''} />
+                            <button type="submit" class="text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 font-medium text-sm px-3 py-2 rounded-md transition-colors border border-red-200">
+                                Excluir
+                            </button>
+                        </form>
+                    </li>
+                ))}
+            </ul>
+        )}
+    </div>
+</div>

@@ -1,0 +1,125 @@
+---
+import AdminLayout from "../layouts/AdminLayout.astro";
+import FormLive from "../components/dashboard/FormLive.astro";
+import ListLive from "../components/dashboard/ListLive.astro";
+import { pool } from "../lib/db.js";
+import fs from "node:fs/promises";
+import path from "node:path";
+
+let mensagemSistema = "";
+
+if (Astro.request.method === "POST") {
+    try {
+        const dados = await Astro.request.formData();
+        const acao = dados.get("acao");
+
+        if (acao === "criar") {
+            const titulo = dados.get("titulo");
+            const data_evento = dados.get("data_evento");
+            const descricao = dados.get("descricao");
+            const link_video = dados.get("link_video");
+            const arquivoFoto = dados.get("foto");
+
+            let nomeFotoFinal = null;
+            if (
+                arquivoFoto &&
+                typeof arquivoFoto === "object" &&
+                arquivoFoto.name &&
+                arquivoFoto.size > 0
+            ) {
+                nomeFotoFinal = `${Date.now()}-${arquivoFoto.name.replace(/\s+/g, "-")}`;
+                const diretorioUploads = path.join(
+                    process.cwd(),
+                    "public",
+                    "uploads",
+                );
+                await fs.mkdir(diretorioUploads, { recursive: true });
+                const caminhoArquivo = path.join(
+                    diretorioUploads,
+                    nomeFotoFinal,
+                );
+                const buffer = Buffer.from(await arquivoFoto.arrayBuffer());
+                await fs.writeFile(caminhoArquivo, buffer);
+            }
+
+            await pool.query(
+                "INSERT INTO admin_user.lives (titulo, data_evento, descricao, link_video, foto) VALUES ($1, $2, $3, $4, $5)",
+                [titulo, data_evento, descricao, link_video, nomeFotoFinal],
+            );
+
+            mensagemSistema = "Evento cadastrado com sucesso.";
+        } else if (acao === "deletar") {
+            const id = dados.get("live_id");
+            const foto = dados.get("foto_nome");
+
+            await pool.query("DELETE FROM admin_user.lives WHERE id = $1", [
+                id,
+            ]);
+
+            if (foto && foto !== "null" && foto !== "") {
+                try {
+                    const caminhoArquivo = path.join(
+                        process.cwd(),
+                        "public",
+                        "uploads",
+                        foto.toString(),
+                    );
+                    await fs.unlink(caminhoArquivo);
+                } catch (err) {
+                    console.error("Aviso: Imagem não encontrada no disco.");
+                }
+            }
+            mensagemSistema = "Evento excluído com sucesso.";
+        }
+    } catch (erro) {
+        console.error(erro);
+        mensagemSistema = "Erro ao processar a operação.";
+    }
+}
+---
+
+<AdminLayout title="Gestão de Lives">
+    <div class="min-h-screen bg-gray-50 p-8">
+        <div class="max-w-6xl mx-auto">
+            <div
+                class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-6"
+            >
+                <div class="flex gap-6 items-center">
+                    <h1 class="text-2xl font-bold text-gray-800 border-r pr-6">
+                        Painel Samavi
+                    </h1>
+                    <a
+                        href="/dashboard"
+                        class="text-gray-500 hover:text-red-600 font-medium transition-colors"
+                        >Produtos</a
+                    >
+                    <a
+                        href="/lives"
+                        class="text-red-600 font-bold border-b-2 border-red-600 pb-1"
+                        >Lives e Eventos</a
+                    >
+                </div>
+                <a href="/" class="text-red-600 font-semibold hover:underline"
+                    >Sair</a
+                >
+            </div>
+
+            {
+                mensagemSistema && (
+                    <div class="bg-blue-100 border border-blue-300 text-blue-800 p-4 mb-6 rounded-lg font-medium">
+                        {mensagemSistema}
+                    </div>
+                )
+            }
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <FormLive />
+                </div>
+                <div>
+                    <ListLive />
+                </div>
+            </div>
+        </div>
+    </div>
+</AdminLayout>
