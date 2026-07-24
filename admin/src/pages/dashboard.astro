@@ -12,31 +12,56 @@ let mensagemSistema = "";
 if (Astro.request.method === "POST") {
     try {
         const dados = await Astro.request.formData();
-        const nome = dados.get("nome");
-        const descricao = dados.get("descricao");
-        const mensagem_whatsapp = dados.get("mensagem_whatsapp");
-        const arquivoFoto = dados.get("foto");
+        const acao = dados.get("acao"); // Pega o campo hidden 'acao'
 
-        let nomeFotoFinal = null;
-        if (arquivoFoto && typeof arquivoFoto === 'object' && arquivoFoto.name && arquivoFoto.size > 0){
-            nomeFotoFinal = `${Date.now()}-${arquivoFoto.name.replace(/\s+/g, '-')}`;
+        // SE A AÇÃO FOR 'CRIAR'
+        if (acao === "criar") {
+            const nome = dados.get("nome");
+            const descricao = dados.get("descricao");
+            const mensagem_whatsapp = dados.get("mensagem_whatsapp");
+            const arquivoFoto = dados.get("foto");
+
+            let nomeFotoFinal = null;
+            if (arquivoFoto && typeof arquivoFoto === 'object' && arquivoFoto.name && arquivoFoto.size > 0){
+                nomeFotoFinal = `${Date.now()}-${arquivoFoto.name.replace(/\s+/g, '-')}`;
+                
+                const diretorioUploads = path.join(process.cwd(), 'public', 'uploads');
+                await fs.mkdir(diretorioUploads, { recursive: true });
+                
+                const caminhoArquivo = path.join(diretorioUploads, nomeFotoFinal);
+                const buffer = Buffer.from(await arquivoFoto.arrayBuffer());
+                await fs.writeFile(caminhoArquivo, buffer);
+            }
+            await pool.query(
+                'INSERT INTO admin_user.produtos (nome, descricao, mensagem_whatsapp, foto) VALUES ($1, $2, $3, $4)',
+                [nome, descricao, mensagem_whatsapp, nomeFotoFinal]
+            );
             
-            const diretorioUploads = path.join(process.cwd(), 'public', 'uploads');
-            await fs.mkdir(diretorioUploads, { recursive: true });
-            
-            const caminhoArquivo = path.join(diretorioUploads, nomeFotoFinal);
-            const buffer = Buffer.from(await arquivoFoto.arrayBuffer());
-            await fs.writeFile(caminhoArquivo, buffer);
-        }
-        await pool.query(
-            'INSERT INTO admin_user.produtos (nome, descricao, mensagem_whatsapp, foto) VALUES ($1, $2, $3, $4)',
-            [nome, descricao, mensagem_whatsapp, nomeFotoFinal]
-        );
+            mensagemSistema = "Produto cadastrado com sucesso.";
+        } 
         
-        mensagemSistema = "Produto cadastrado com sucesso.";
+        
+        else if (acao === "deletar") {
+            const id = dados.get("produto_id");
+            const foto = dados.get("foto_nome");
+
+            await pool.query('DELETE FROM admin_user.produtos WHERE id = $1', [id]);
+
+            if (foto && foto !== 'null' && foto !== '') {
+                try {
+                    const caminhoArquivo = path.join(process.cwd(), 'public', 'uploads', foto.toString());
+                    await fs.unlink(caminhoArquivo);
+                } catch (err) {
+                    console.error("Aviso: A imagem que tentou excluir não estava no disco.");
+                }
+            }
+            
+            mensagemSistema = "Produto excluído com sucesso.";
+        }
+
     } catch (erro) {
         console.error(erro);
-        mensagemSistema = "Erro ao salvar o produto no banco de dados.";
+        mensagemSistema = "Erro ao processar a operação.";
     }
 }
 ---
