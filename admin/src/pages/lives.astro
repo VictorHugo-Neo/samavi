@@ -18,6 +18,7 @@ if (Astro.request.method === "POST") {
         if (acao === "criar") {
             const titulo = dados.get("titulo");
             const data_evento = dados.get("data_evento");
+            const hora_evento = dados.get("hora_evento");
             const descricao = dados.get("descricao");
             const link_video = dados.get("link_video");
             const arquivoFoto = dados.get("foto");
@@ -45,8 +46,15 @@ if (Astro.request.method === "POST") {
             }
 
             await pool.query(
-                "INSERT INTO admin_user.lives (titulo, data_evento, descricao, link_video, foto) VALUES ($1, $2, $3, $4, $5)",
-                [titulo, data_evento, descricao, link_video, nomeFotoFinal],
+                "INSERT INTO admin_user.lives (titulo, data_evento, hora_evento, descricao, link_video, foto) VALUES ($1, $2, $3, $4, $5, $6)",
+                [
+                    titulo,
+                    data_evento,
+                    hora_evento,
+                    descricao,
+                    link_video,
+                    nomeFotoFinal,
+                ],
             );
 
             mensagemSistema = "Evento cadastrado com sucesso.";
@@ -83,7 +91,7 @@ if (Astro.request.method === "POST") {
 <AdminLayout title="Gestão de Lives">
     <div class="min-h-screen bg-gray-50 p-8">
         <div class="max-w-6xl mx-auto">
-            <AdminNav  />
+            <AdminNav />
 
             {
                 mensagemSistema && (
