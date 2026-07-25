@@ -18,6 +18,11 @@ if (Astro.request.method === "POST") {
             const usuario = consulta.rows[0];
 
             if (usuario && usuario.senha === senha) {
+                    Astro.cookies.set('admin_session', usuario.id.toString(), {
+                    path: '/',
+                    httpOnly: true,
+                    maxAge: 60 * 60 
+                 });
                 return Astro.redirect('/dashboard');
             } else {
                 erroLogin = "E-mail ou senha incorretos. Tente novamente.";
