@@ -43,7 +43,7 @@ const proximaLive = proximasLives.length > 0 ? proximasLives[0] : null;
                     <div class="md:w-1/2 bg-red-800">
                         {proximaLive.foto ? (
                             <img
-                                src={`http://localhost:4322/uploads/${proximaLive.foto}`}
+                                src={`${import.meta.env.PUBLIC_ADMIN_URL}/uploads/${proximaLive.foto}`}
                                 alt={proximaLive.titulo}
                                 class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                             />
