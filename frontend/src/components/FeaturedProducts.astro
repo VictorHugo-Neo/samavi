@@ -24,7 +24,7 @@ try {
                         <div class="h-64 overflow-hidden bg-gray-200">
                             {produto.foto ? (
                                 <img 
-                                    src={`http://localhost:4322/uploads/${produto.foto}`} 
+                                    src={`${import.meta.env.PUBLIC_ADMIN_URL}/uploads/${produto.foto}`} 
                                     alt={produto.nome} 
                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                                 />
