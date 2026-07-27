@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: senha_do_banco_aqui
+      POSTGRES_DB: samavi_admin_db
+    volumes:
+      - samavi_db_data:/var/lib/postgresql/data
+    networks:
+      - samavi_net
+
+  admin:
+    build: ./admin
+    restart: always
+    environment:
+      - DATABASE_URL=postgres://admin_user:senha_do_banco_aqui@db:5432/samavi_admin_db
+    volumes:
+      - samavi_uploads:/app/public/uploads
+    depends_on:
+      - db
+    networks:
+      - samavi_net
+      - caddy_global_net
+
+  frontend:
+    build: ./frontend
+    restart: always
+    environment:
+      - PUBLIC_ADMIN_URL=https://admin.samavicomercial.com.br
+      - DATABASE_URL=postgres://admin_user:senha_do_banco_aqui@db:5432/samavi_admin_db
+    depends_on:
+      - db
+    networks:
+      - samavi_net
+      - caddy_global_net
+
+volumes:
+  samavi_db_data:
+  samavi_uploads:
+
+networks:
+  samavi_net:
+  caddy_global_net:
+    external: true
