@@ -10,6 +10,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - samavi_db_data:/var/lib/postgresql/data
+      - samavi_uploads:/app/dist/client/uploads
     networks:
       - samavi_net
 
@@ -20,6 +21,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
     volumes:
       - samavi_uploads:/app/public/uploads
+      - samavi_uploads:/app/dist/client/uploads
     depends_on:
       - db
     networks:
