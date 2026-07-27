@@ -29,7 +29,8 @@ if (Astro.request.method === "POST") {
             }
         }
     } catch (erro) {
-        console.error("Erro ao validar login:", erro);
+        console.error("Erro ao validar login:");
+        console.error(erro);
         erroLogin = "Ocorreu um erro no servidor.";
     }
 }
