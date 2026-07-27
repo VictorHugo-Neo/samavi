@@ -5,46 +5,56 @@ import LoginForm from '../components/index/LoginForm.astro';
 import { pool } from '../lib/db.js';
 
 let erroLogin = "";
+
 if (Astro.request.method === "POST") {
-    try {
-        const dadosFormulario = await Astro.request.formData();
-        const email = dadosFormulario.get("email");
-        const senha = dadosFormulario.get("password");
+  try {
+    const dadosFormulario = await Astro.request.formData();
+    const email = String(dadosFormulario.get("email") ?? "").trim();
+    const senha = String(dadosFormulario.get("password") ?? "");
 
-        if (!email || !senha) {
-            erroLogin = "Por favor, preencha o e-mail e a senha.";
-        } else {
-            const consulta = await pool.query('SELECT * FROM admin_user.usuarios WHERE email = $1', [email]);
-            const usuario = consulta.rows[0];
+    if (!email || !senha) {
+      erroLogin = "Por favor, preencha o e-mail e a senha.";
+    } else {
+      const consulta = await pool.query(
+        'SELECT id, email, senha FROM admin_user.usuarios WHERE email = $1 LIMIT 1',
+        [email]
+      );
 
-            if (usuario && usuario.senha === senha) {
-                    Astro.cookies.set('admin_session', usuario.id.toString(), {
-                    path: '/',
-                    httpOnly: true,
-                    maxAge: 60 * 60 
-                 });
-                return Astro.redirect('/dashboard');
-            } else {
-                erroLogin = "E-mail ou senha incorretos. Tente novamente.";
-            }
-        }
-    } catch (erro) {
-        console.error("Erro ao validar login:");
-        console.error(erro);
-        erroLogin = "Ocorreu um erro no servidor.";
+      const usuario = consulta.rows[0];
+
+      if (!usuario) {
+        erroLogin = "E-mail ou senha incorretos. Tente novamente.";
+      } else if (String(usuario.senha) !== senha) {
+        erroLogin = "E-mail ou senha incorretos. Tente novamente.";
+      } else {
+        Astro.cookies.set("admin_session", String(usuario.id), {
+          path: "/",
+          httpOnly: true,
+          sameSite: "lax",
+          secure: import.meta.env.PROD,
+          maxAge: 60 * 60,
+        });
+
+        return Astro.redirect("/dashboard");
+      }
     }
+  } catch (erro) {
+    console.error("Erro ao validar login:", erro);
+    erroLogin = "Ocorreu um erro no servidor.";
+  }
 }
 ---
-<AdminLayout title="Login">
-    <main class="w-full max-w-md mx-auto p-6">
-        <BrandHeader />
-        
-        {erroLogin && (
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm font-medium text-center">
-                {erroLogin}
-            </div>
-        )}
 
-        <LoginForm />
-    </main>
+<AdminLayout title="Login">
+  <main class="w-full max-w-md mx-auto p-6">
+    <BrandHeader />
+
+    {erroLogin && (
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm font-medium text-center">
+        {erroLogin}
+      </div>
+    )}
+
+    <LoginForm />
+  </main>
 </AdminLayout>
