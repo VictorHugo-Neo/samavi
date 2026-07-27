@@ -4,10 +4,8 @@ import { pool } from "../lib/db.js";
 let eventos = [];
 
 try {
-    const consulta = await pool.query(
-        "SELECT * FROM admin_user.lives ORDER BY data_evento DESC",
-    );
-    eventos = consulta.rows;
+    const consultaLives = await pool.query('SELECT * FROM admin_user.lives ORDER BY data_evento DESC');
+    eventos = consultaLives.rows;
 } catch (erro) {
     console.error("Erro ao procurar eventos:", erro);
 }
