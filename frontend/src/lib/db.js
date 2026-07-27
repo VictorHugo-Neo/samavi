@@ -2,14 +2,16 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+
 export const pool = new Pool({
-    connectionString: import.meta.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
 });
 
 pool.on('connect', () => {
-    console.log('Deu certo bb');
+    console.log('Conectado ao PostgreSQL!');
 });
 
 pool.on('error', (err) => {
-    console.error(' Deu Red:', err);
+    console.error('Erro no PostgreSQL:', err);
 });
