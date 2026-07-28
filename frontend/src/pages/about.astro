@@ -3,88 +3,157 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Nossa História - Samavi Móveis e Decoração">
-    <section class="bg-red-700 text-white py-16 md:py-24">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="inline-block px-4 py-1 bg-red-800 text-red-100 font-semibold text-sm rounded-full mb-4">
-                Desde o Início
+    
+    <section class="relative bg-white pt-16 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24 overflow-hidden border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-red-50 text-red-700 font-bold text-xs sm:text-sm rounded-full mb-4 sm:mb-6 uppercase tracking-widest border border-red-100">
+                Nossa Essência
             </span>
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-                A História da Samavi Comercial
+            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mb-4 sm:mb-8 leading-tight">
+                Criando laços através <br class="hidden sm:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-red-500">do design.</span>
             </h1>
-            <p class="text-lg md:text-xl text-red-100 max-w-2xl mx-auto">
-                Transformando casas em lar e fazendo parte das famílias de Araçuaí e região.
+            <p class="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
+                Acreditamos que cada ambiente tem uma história para contar. A Samavi Comercial nasceu para ajudar as famílias de Araçuaí a escreverem os seus melhores capítulos.
             </p>
+        </div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[800px] sm:h-[800px] bg-red-50 rounded-full blur-3xl opacity-50 pointer-events-none -z-10"></div>
+    </section>
+
+    <section class="py-12 sm:py-20 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center">
+                
+                <div class="relative h-[350px] sm:h-[600px] w-full max-w-sm sm:max-w-lg mx-auto lg:max-w-none lg:mx-0 mt-4 sm:mt-0">
+                    <img 
+                        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=600&auto=format&fit=crop" 
+                        alt="Detalhe de móvel" 
+                        class="absolute top-0 right-0 w-3/4 h-[60%] object-cover rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl z-10"
+                    />
+                    <img 
+                        src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=600&auto=format&fit=crop" 
+                        alt="Ambiente decorado" 
+                        class="absolute bottom-0 left-0 w-2/3 h-[50%] object-cover rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl z-20 border-4 sm:border-8 border-gray-50"
+                    />
+                    <div class="absolute bottom-[20%] right-4 sm:right-8 z-30 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl w-32 sm:w-48 rotate-3 transform hover:rotate-0 transition-transform duration-300">
+                        <p class="font-bold text-gray-900 text-sm sm:text-lg mb-0 sm:mb-1">Desde</p>
+                        <p class="text-red-700 font-extrabold text-xl sm:text-3xl">Anos 90</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8 sm:space-y-12 pl-2 sm:pl-0">
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-red-200">
+                        <div class="absolute w-3 h-3 sm:w-4 sm:h-4 bg-red-700 rounded-full -left-[7px] sm:-left-[9px] top-1.5 sm:top-1"></div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">O Sonho Inicial</h3>
+                        <p class="text-gray-600 leading-relaxed text-base sm:text-lg">
+                            A Samavi Comercial nasceu de uma visão genuína: trazer produtos de alta qualidade, conforto e sofisticação para as famílias do Vale do Jequitinhonha, democratizando o acesso ao bom design.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-red-200">
+                        <div class="absolute w-3 h-3 sm:w-4 sm:h-4 bg-red-700 rounded-full -left-[7px] sm:-left-[9px] top-1.5 sm:top-1"></div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Mais que Móveis</h3>
+                        <p class="text-gray-600 leading-relaxed text-base sm:text-lg">
+                            Compreendemos desde cedo que não entregamos apenas madeira ou tecido. Cada peça escolhida representa um novo começo — um casamento, uma casa nova, uma conquista familiar.
+                        </p>
+                    </div>
+
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-transparent">
+                        <div class="absolute w-3 h-3 sm:w-4 sm:h-4 bg-red-700 rounded-full -left-[7px] sm:-left-[9px] top-1.5 sm:top-1"></div>
+                        <div class="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full -left-[4px] sm:-left-[5px] top-2 sm:top-2"></div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">O Nosso Compromisso Hoje</h3>
+                        <p class="text-gray-600 leading-relaxed text-base sm:text-lg">
+                            Crescemos, mas a nossa prioridade mantém-se inabalável: um atendimento próximo, humano e altamente personalizado, garantindo que se sente em casa antes mesmo do sofá chegar à sua sala.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 space-y-12 text-gray-700 leading-relaxed text-lg">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 border-l-4 border-red-700 pl-3">
-                        Como Tudo Começou
-                    </h2>
-                    <p class="mb-4">
-                        A Samavi Comercial nasceu de um sonho de oferecer produtos de alta qualidade, conforto e sofisticação para as famílias de Araçuaí e do Vale do Jequitinhonha.
-                    </p>
-                    <p>
-                        Desde a fundação, a prioridade sempre foi oferecer um atendimento próximo e personalizado, entendendo que cada móvel escolhido representa um novo capítulo na vida de nossos clientes.
-                    </p>
-                </div>
-                <div class="bg-gray-100 rounded-2xl h-64 flex items-center justify-center text-gray-400 font-medium overflow-hidden shadow-inner">
-                    <img 
-                        src="fachada.png" 
-                        alt="Fachada da Samavi Móveis" 
-                        class="w-full h-full object-cover" 
-                        onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'p-4 text-center text-gray-400\'>Foto da Loja / Fachada</span>';"
-                    />
-                </div>
-            </div>
-
-            <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 space-y-6">
-                <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
-                    Nossos Valores & Compromisso
+    <section class="py-12 sm:py-20 lg:py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-16 lg:mb-24">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mb-3 sm:mb-4">
+                    Os Pilares da Samavi
                 </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="text-3xl mb-2">🛋️</div>
-                        <h3 class="font-bold text-gray-800 mb-2">Qualidade</h3>
-                        <p class="text-sm text-gray-600">Móveis e decorações duráveis, selecionados com rigor.</p>
-                    </div>
+                <div class="w-12 sm:w-16 h-1 bg-red-700 mx-auto rounded-full"></div>
+            </div>
 
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="text-3xl mb-2">🤝</div>
-                        <h3 class="font-bold text-gray-800 mb-2">Atendimento</h3>
-                        <p class="text-sm text-gray-600">Relação de confiança, transparência e respeito com cada cliente.</p>
+            <div class="space-y-8 sm:space-y-16">
+                <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 bg-gray-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-red-700 shadow-sm border border-gray-100">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
                     </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Curadoria e Qualidade</h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                            Móveis e decorações duráveis, selecionados com rigor junto dos melhores fornecedores do mercado nacional.
+                        </p>
+                    </div>
+                </div>
 
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <div class="text-3xl mb-2">📍</div>
-                        <h3 class="font-bold text-gray-800 mb-2">Tradição</h3>
-                        <p class="text-sm text-gray-600">Compromisso contínuo com o desenvolvimento de Araçuaí/MG.</p>
+                <div class="flex flex-col md:flex-row-reverse items-center gap-6 sm:gap-8 bg-red-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-red-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-red-700 shadow-sm border border-red-100">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Atendimento Humanizado</h3>
+                        <p class="text-gray-700 text-base sm:text-lg leading-relaxed">
+                            Não vendemos apenas para bater metas. Criamos relações de confiança, transparência e respeito com cada cliente que entra na nossa loja.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 bg-gray-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center text-red-700 shadow-sm border border-gray-100">
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Tradição Regional</h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                            Temos raízes fortes e um compromisso contínuo com o desenvolvimento e a economia de Araçuaí e de toda a região.
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="text-center py-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">
-                    Venha Tomar um Café Conosco!
-                </h3>
-                <p class="text-gray-600 mb-6 max-w-xl mx-auto">
-                    Visite nossa loja física em Araçuaí e confira de perto todos os detalhes do nosso showroom.
-                </p>
-                <a 
-                    href="https://wa.me/5533988774411?text=Ol%C3%A1!%20Li%20a%20hist%C3%B3ria%20da%20Samavi%20no%20site%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs." 
-                    target="_blank" 
+    <section class="relative bg-gray-900 py-16 sm:py-20 lg:py-28 overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <img 
+                src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2000&auto=format&fit=crop" 
+                alt="Detalhe Loja de Móveis" 
+                class="w-full h-full object-cover"
+            />
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 sm:mb-6">
+                A sua casa merece este toque.
+            </h2>
+            <p class="text-base sm:text-xl text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto">
+                Visite a nossa loja física em Araçuaí. Venha tomar um café connosco e descobrir como podemos transformar o seu ambiente.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a
+                    href="https://wa.me/5533988774411?text=Ol%C3%A1!%20Li%20a%20hist%C3%B3ria%20da%20Samavi%20no%20site%20e%20gostaria%20de%20falar%20com%20um%20vendedor."
+                    target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors"
+                    class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-red-700 hover:bg-red-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-700/30 text-base"
                 >
-                    Falar com Atendimento
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                    Falar no WhatsApp
+                </a>
+                <a
+                    href="/"
+                    class="w-full sm:w-auto inline-flex justify-center items-center bg-white/10 hover:bg-white/20 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 backdrop-blur-sm text-base"
+                >
+                    Ver Produtos
                 </a>
             </div>
-
         </div>
     </section>
 </Layout>
