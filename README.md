@@ -1,6 +1,6 @@
 # Samavi Comercial
 
-Sistema da Samavi Comercial composto por duas aplicações:
+Site da Samavi Comercial composto por duas aplicações:
 
 - **Frontend:** site institucional da empresa.
 - **Admin:** painel administrativo para gerenciamento de produtos e lives.
