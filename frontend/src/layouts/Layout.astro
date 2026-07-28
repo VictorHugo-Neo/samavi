@@ -4,91 +4,86 @@ const { title } = Astro.props;
 ---
 
 <html lang="pt-BR">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Samavi Móveis e Decoração</title>
-	</head>
-	<body
-		class="bg-samavi-bg text-samavi-dark font-sans antialiased flex flex-col min-h-screen"
-	>
-		<header class="bg-white shadow-sm py-4">
-			<div
-				class="container mx-auto px-4 flex justify-center md:justify-between items-center"
-			>
-				<a href="/" class="text-2xl font-bold text-samavi-red">Samavi</a
-				>
-				<nav class="hidden md:flex gap-6 font-medium">
-					<a href="/" class="hover:text-samavi-red transition-colors"
-						>Início</a
-					>
-					<a
-						href="/history"
-						class="hover:text-samavi-red transition-colors"
-						>Eventos</a
-					>
-					<a
-						href="/about"
-						class="hover:text-samavi-red transition-colors"
-						>Sobre</a
-					>
-				</nav>
-			</div>
-		</header>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title} | Samavi Móveis e Decoração</title>
+    </head>
+    <body class="bg-samavi-bg text-samavi-dark font-sans antialiased flex flex-col min-h-screen">
+        
+        <header class="bg-white shadow-sm py-4 relative z-50">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                
+                <a href="/" class="text-2xl font-bold text-samavi-red">Samavi</a>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-red-700 focus:outline-none p-2" aria-label="Abrir menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
 
-		<main class="grow">
-			<slot />
-		</main>
+                <nav class="hidden md:flex gap-6 font-medium">
+                    <a href="/" class="hover:text-samavi-red transition-colors">Início</a>
+                    <a href="/history" class="hover:text-samavi-red transition-colors">Eventos</a>
+                    <a href="/about" class="hover:text-samavi-red transition-colors">Sobre</a>
+                </nav>
+            </div>
 
-		<footer class="bg-slate-900 text-white pt-16 pb-8">
-			<div
-				class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
-			>
-				<div>
-					<h3 class="text-2xl font-bold text-red-500 mb-4">
-						Samavi Comercial
-					</h3>
-					<p class="text-gray-400 text-sm leading-relaxed">
-						Sua loja de referência em móveis e decoração em
-						Araçuaí-MG. Qualidade, bom gosto e confiança em cada
-						detalhe.
-					</p>
-				</div>
-				<div>
-					<h4 class="font-bold text-lg mb-4 text-gray-200">
-						Horário de Funcionamento
-					</h4>
-					<p class="text-gray-400 text-sm mb-2">
-						Segunda a Sexta: 08:00 às 18:00
-					</p>
-					<p class="text-gray-400 text-sm">Sábado: 08:00 às 13:00</p>
-				</div>
-				<div>
-					<h4 class="font-bold text-lg mb-4 text-gray-200">
-						Contato & Localização
-					</h4>
-					<p class="text-gray-400 text-sm mb-2">
-						Rua Dom Serafim, 16 - Centro
-					</p>
-					<p class="text-gray-400 text-sm mb-2">Araçuaí - MG</p>
-					<p class="text-gray-400 text-sm mb-2">
-						Tel / WhatsApp: (33) 98877-4411
-					</p>
-					<p class="text-gray-400 text-sm">
-						E-mail: samavicom@gmail.com
-					</p>
-				</div>
-			</div>
-			<div
-				class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm"
-			>
-				<p>
-					&copy; {new Date().getFullYear()} Samavi Comercial. Todos os direitos
-					reservados.
-				</p>
-			</div>
-		</footer>
-	</body>
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-md border-t border-gray-100">
+                <nav class="flex flex-col px-4 py-2 font-medium">
+                    <a href="/" class="block py-3 text-gray-700 hover:text-red-700 border-b border-gray-50">Início</a>
+                    <a href="/history" class="block py-3 text-gray-700 hover:text-red-700 border-b border-gray-50">Eventos</a>
+                    <a href="/about" class="block py-3 text-gray-700 hover:text-red-700">Sobre</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="grow">
+            <slot />
+        </main>
+
+        <footer class="bg-slate-900 text-white pt-16 pb-8">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">Samavi Comercial</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Sua loja de referência em móveis e decoração em Araçuaí-MG. Qualidade, bom gosto e confiança em cada detalhe.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-gray-200">Horário de Funcionamento</h4>
+                    <p class="text-gray-400 text-sm mb-2">Segunda a Sexta: 08:00 às 18:00</p>
+                    <p class="text-gray-400 text-sm">Sábado: 08:00 às 13:00</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-gray-200">Contato & Localização</h4>
+                    <p class="text-gray-400 text-sm mb-2">Rua Dom Serafim, 16 - Centro</p>
+                    <p class="text-gray-400 text-sm mb-2">Araçuaí - MG</p>
+                    <p class="text-gray-400 text-sm mb-2">Tel / WhatsApp: (33) 98877-4411</p>
+                    <p class="text-gray-400 text-sm">E-mail: samavicom@gmail.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; {new Date().getFullYear()} Samavi Comercial. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+
+        <script>
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const iconBars = document.getElementById('icon-bars');
+            const iconClose = document.getElementById('icon-close');
+
+            if (btn && menu && iconBars && iconClose) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    iconBars.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        </script>
+    </body>
 </html>
