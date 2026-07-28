@@ -16,8 +16,13 @@ const { title } = Astro.props;
         <header class="bg-white shadow-sm py-4 relative z-50">
             <div class="container mx-auto px-4 flex justify-between items-center">
                 
-                <a href="/" class="text-2xl font-bold text-samavi-red">Samavi</a>
-                
+				<a href="/" class="flex items-center" aria-label="Página Inicial Samavi">
+					<img 
+						src="/logoHeaderVermelho.svg" 
+						alt="Samavi Comercial" 
+						class="h-12 w-auto" 
+					/>
+				</a>                
                 <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-red-700 focus:outline-none p-2" aria-label="Abrir menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -48,11 +53,15 @@ const { title } = Astro.props;
         <footer class="bg-slate-900 text-white pt-16 pb-8">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div>
-                    <h3 class="text-2xl font-bold text-red-500 mb-4">Samavi Comercial</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Sua loja de referência em móveis e decoração em Araçuaí-MG. Qualidade, bom gosto e confiança em cada detalhe.
-                    </p>
-                </div>
+					<img 
+						src="/logoHeaderVermelho.svg" 
+						alt="Samavi Comercial" 
+						class="h-12 w-auto mb-6" 
+					/>
+					<p class="text-gray-400 text-sm leading-relaxed">
+						Sua loja de referência em móveis e decoração em Araçuaí-MG. Qualidade, bom gosto e confiança em cada detalhe.
+					</p>
+				</div>
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-gray-200">Horário de Funcionamento</h4>
                     <p class="text-gray-400 text-sm mb-2">Segunda a Sexta: 08:00 às 18:00</p>
