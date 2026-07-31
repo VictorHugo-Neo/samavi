@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db:
+  samavi_db:
     image: postgres:15-alpine
     restart: always
     environment:
@@ -23,28 +23,23 @@ services:
       - samavi_uploads:/app/public/uploads
       - samavi_uploads:/app/dist/client/uploads
     depends_on:
-      - db
+      - samavi_db  
     networks:
       - samavi_net
       - caddy_global_net
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - PUBLIC_ADMIN_URL=${PUBLIC_ADMIN_URL}
     restart: always
     environment:
       - PUBLIC_ADMIN_URL=${PUBLIC_ADMIN_URL}
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
-      - db
+      - samavi_db  
     networks:
       - samavi_net
       - caddy_global_net
-
-volumes:
-  samavi_db_data:
-  samavi_uploads:
-
-networks:
-  samavi_net:
-  caddy_global_net:
-    external: true
