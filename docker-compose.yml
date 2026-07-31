@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  
   samavi_db:
     image: postgres:15-alpine
     restart: always
@@ -43,3 +44,12 @@ services:
     networks:
       - samavi_net
       - caddy_global_net
+
+volumes:
+  samavi_db_data:
+  samavi_uploads:
+
+networks:
+  samavi_net:
+  caddy_global_net:
+    external: true
